@@ -30,7 +30,7 @@ bool stringEquals(const char* a,const char* b){
 }
 void printHeader(const char* title){
     const char* heading=(title==NULL)?"":title;
-    cout<<heading<<'\n';
+    cout<<heading<<endl;
 }
 void clearScreen(){
 #ifdef _WIN32
