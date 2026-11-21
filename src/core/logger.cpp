@@ -7,19 +7,19 @@ bool saveGameStateToFile(const char* filename,int playerFloor,int playerRoom,int
     if(filename==NULL||inventoryCount<0||inventoryCount>MAX_INVENTORY_CAPACITY||playerFloor<-1||playerFloor>=NUM_FLOORS||playerRoom<-1||playerRoom>=ROOMS_PER_FLOOR||(playerFloor==-1)!=(playerRoom==-1))return false;
     ofstream file(filename);
     if(!file.is_open())return false;
-    file<<"PLAYER_FLOOR: "<<playerFloor<<'\n';
-    file<<"PLAYER_ROOM: "<<playerRoom<<'\n';
-    file<<"ENERGY: "<<clampInt(energy,0,MAX_ENERGY)<<'\n';
-    file<<"TIME: "<<clampInt(time,0,MAX_TIME)<<'\n';
-    file<<"SCORE: "<<(score<0?0:score)<<'\n';
-    file<<"INVENTORY_COUNT: "<<inventoryCount<<'\n';
+    file<<"PLAYER_FLOOR: "<<playerFloor<<endl;
+    file<<"PLAYER_ROOM: "<<playerRoom<<endl;
+    file<<"ENERGY: "<<clampInt(energy,0,MAX_ENERGY)<<endl;
+    file<<"TIME: "<<clampInt(time,0,MAX_TIME)<<endl;
+    file<<"SCORE: "<<(score<0?0:score)<<endl;
+    file<<"INVENTORY_COUNT: "<<inventoryCount<<endl;
     file<<"INVENTORY: ";
     for(int i=0;i<inventoryCount;i++)file<<(int)(unsigned char)inventory[i]<<' ';
-    file<<'\n';
-    file<<"EMERGENCY_TRIPS_LEFT: "<<(emergencyTripsLeft<0?0:emergencyTripsLeft)<<'\n';
+    file<<endl;
+    file<<"EMERGENCY_TRIPS_LEFT: "<<(emergencyTripsLeft<0?0:emergencyTripsLeft)<<endl;
     file<<"OBJECTIVES: ";
     for(int i=0;i<NUM_OBJECTIVES;i++)file<<(objectives[i]?1:0)<<' ';
-    file<<'\n'<<"ROOM_ENTITIES:\n";
+    file<<endl<<"ROOM_ENTITIES:"<<endl;
     for(int f=0;f<NUM_FLOORS;f++){
         for(int r=0;r<ROOMS_PER_FLOOR;r++){
             if(entityCounts[f][r]<0||entityCounts[f][r]>MAX_ENTITIES_PER_ROOM){
@@ -28,7 +28,7 @@ bool saveGameStateToFile(const char* filename,int playerFloor,int playerRoom,int
             }
             file<<f<<' '<<r<<' '<<entityCounts[f][r]<<' ';
             for(int e=0;e<entityCounts[f][r];e++)file<<(int)(unsigned char)roomEntities[f][r][e]<<' ';
-            file<<'\n';
+            file<<endl;
         }
     }
     file.close();
@@ -100,22 +100,22 @@ void writeGameSummaryReport(const char* filename,int score,int remainingEnergy,i
     if(filename==NULL)return;
     ofstream file(filename);
     if(!file.is_open())return;
-    file<<"THE LAST TRAIN - GAME SUMMARY";
-    file<<"Result: "<<(victory?"VICTORY":"MISSION FAILED")<<'\n';
-    file<<"Final Score: "<<score<<'\n';
-    file<<"Remaining Energy: "<<clampInt(remainingEnergy,0,MAX_ENERGY)<<'\n';
-    file<<"Remaining Time: "<<clampInt(remainingTime,0,MAX_TIME)<<'\n';
-    file<<"\nOBJECTIVES:\n";
-    file<<"Master Key: "<<(objectives[OBJ_MASTER_KEY]?"Completed":"Not Completed")<<'\n';
-    file<<"Clue 4: "<<(objectives[OBJ_CLUE_4]?"Found":"Not Found")<<'\n';
-    file<<"Clue 2: "<<(objectives[OBJ_CLUE_2]?"Found":"Not Found")<<'\n';
-    file<<"Clue 7: "<<(objectives[OBJ_CLUE_7]?"Found":"Not Found")<<'\n';
-    file<<"Cabinet Unlocked: "<<(objectives[OBJ_CABINET_UNLOCKED]?"Yes":"No")<<'\n';
-    file<<"Train Key: "<<(objectives[OBJ_TRAIN_KEY]?"Collected":"Not Collected")<<'\n';
-    file<<"Fuse Installed: "<<(objectives[OBJ_FUSE_INSTALLED]?"Yes":"No")<<'\n';
-    file<<"Lift Pass: "<<(objectives[OBJ_LIFT_PASS]?"Collected":"Not Collected")<<'\n';
-    file<<"Passenger Rescued: "<<(objectives[OBJ_PASSENGER_RESCUED]?"Yes":"No")<<'\n';
-    file<<"Cat Secured: "<<(objectives[OBJ_CAT_SECURED]?"Yes":"No")<<'\n';
-    file<<"Train Prepared: "<<(objectives[OBJ_TRAIN_PREPARED]?"Yes":"No")<<'\n';
-    file<<"Mission Won: "<<(objectives[OBJ_MISSION_WON]?"Yes":"No")<<'\n';
+    file<<"THE LAST TRAIN - GAME SUMMARY"<<endl;
+    file<<"Result: "<<(victory?"VICTORY":"MISSION FAILED")<<endl;
+    file<<"Final Score: "<<score<<endl;
+    file<<"Remaining Energy: "<<clampInt(remainingEnergy,0,MAX_ENERGY)<<endl;
+    file<<"Remaining Time: "<<clampInt(remainingTime,0,MAX_TIME)<<endl;
+    file<<"OBJECTIVES:"<<endl;
+    file<<"Master Key: "<<(objectives[OBJ_MASTER_KEY]?"Completed":"Not Completed")<<endl;
+    file<<"Clue 4: "<<(objectives[OBJ_CLUE_4]?"Found":"Not Found")<<endl;
+    file<<"Clue 2: "<<(objectives[OBJ_CLUE_2]?"Found":"Not Found")<<endl;
+    file<<"Clue 7: "<<(objectives[OBJ_CLUE_7]?"Found":"Not Found")<<endl;
+    file<<"Cabinet Unlocked: "<<(objectives[OBJ_CABINET_UNLOCKED]?"Yes":"No")<<endl;
+    file<<"Train Key: "<<(objectives[OBJ_TRAIN_KEY]?"Collected":"Not Collected")<<endl;
+    file<<"Fuse Installed: "<<(objectives[OBJ_FUSE_INSTALLED]?"Yes":"No")<<endl;
+    file<<"Lift Pass: "<<(objectives[OBJ_LIFT_PASS]?"Collected":"Not Collected")<<endl;
+    file<<"Passenger Rescued: "<<(objectives[OBJ_PASSENGER_RESCUED]?"Yes":"No")<<endl;
+    file<<"Cat Secured: "<<(objectives[OBJ_CAT_SECURED]?"Yes":"No")<<endl;
+    file<<"Train Prepared: "<<(objectives[OBJ_TRAIN_PREPARED]?"Yes":"No")<<endl;
+    file<<"Mission Won: "<<(objectives[OBJ_MISSION_WON]?"Yes":"No")<<endl;
 }
