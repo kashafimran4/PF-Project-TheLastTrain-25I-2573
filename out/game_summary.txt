@@ -1,0 +1,18 @@
+THE LAST TRAIN - GAME SUMMARY
+Result: MISSION FAILED
+Final Score: 0
+Remaining Energy: 100
+Remaining Time: 50
+OBJECTIVES:
+Master Key: Not Completed
+Clue 4: Not Found
+Clue 2: Not Found
+Clue 7: Not Found
+Cabinet Unlocked: No
+Train Key: Not Collected
+Fuse Installed: No
+Lift Pass: Not Collected
+Passenger Rescued: No
+Cat Secured: No
+Train Prepared: No
+Mission Won: No
